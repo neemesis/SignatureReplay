@@ -47,6 +47,7 @@
             this.tbSignatureB64.Name = "tbSignatureB64";
             this.tbSignatureB64.Size = new System.Drawing.Size(391, 207);
             this.tbSignatureB64.TabIndex = 0;
+            this.tbSignatureB64.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbSignatureB64_KeyDown);
             // 
             // btnReplay
             // 

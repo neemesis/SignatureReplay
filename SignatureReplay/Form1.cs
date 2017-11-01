@@ -107,5 +107,13 @@ namespace SignatureReplay
         {
             tbSignatureB64.Text = "";
         }
+
+        private void tbSignatureB64_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.A)
+            {
+                tbSignatureB64.SelectAll();
+            }
+        }
     }
 }
