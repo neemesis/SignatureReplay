@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
 
 namespace SignatureReplay
 {
@@ -42,6 +42,23 @@ namespace SignatureReplay
                     list.Add(new ManagedIsoPoint { x = rnd.Next(600), y = rnd.Next(400), pressure = rnd.Next(1, 255), time = dt.Ticks });
                     //Thread.Sleep(rnd.Next(3000));
                 }
+            }
+
+            var minX = list.Min(q => q.x);
+            var minY = list.Min(q => q.y);
+            var maxP = list.Max(q => q.pressure);
+            var minP = list.Min(q => q.pressure);
+
+            foreach (var a in list)
+            {
+                a.x -= minX;
+                a.y -= minY;
+
+                a.x /= 10;
+                a.y /= 10;
+
+                if (a.pressure == 0)
+                    a.pressure = 1;
             }
 
             if (cbDev.Checked)
@@ -84,6 +101,11 @@ namespace SignatureReplay
 
             var rf = new ReplayForm(list, (int)nudThickness.Value, cbDots.Checked);
             rf.Show();
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            tbSignatureB64.Text = "";
         }
     }
 }

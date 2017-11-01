@@ -29,13 +29,13 @@ namespace SignatureReplay
         public ReplayForm(List<ManagedIsoPoint> points, int thickness, bool dots)
         {
             InitializeComponent();
-
+            Application.EnableVisualStyles();
             _points = points;
             _thickness = thickness;
             _dots = dots;
 
-            this.Size = new Size((int) (Math.Ceiling(_points.Max(q => q.x)) + Math.Floor(_points.Min(q => q.x))), 
-                (int) (Math.Ceiling(_points.Max(q => q.y)) + Math.Floor(_points.Min(q => q.y))));
+            this.Size = new Size((int) (Math.Ceiling(_points.Max(q => q.x)) + Math.Floor(_points.Min(q => q.x))) + 300, 
+                (int) (Math.Ceiling(_points.Max(q => q.y)) + Math.Floor(_points.Min(q => q.y))) + 300);
 
             _runningTime = _points.Max(q => q.time) - _points.Min(q => q.time);
             _maxPressure = _points.Max(q => q.pressure);
@@ -106,15 +106,22 @@ namespace SignatureReplay
 
             if (_dots)
             {
-                gfx.FillEllipse(brush, (float)_points[_current].x, (float)_points[_current].y, thick, thick);
+                gfx.FillEllipse(brush, (float)_points[_current].x, this.Size.Height - (float)_points[_current].y - 100, thick, thick);
             } else
             {
                 pen.Width = thick;
+                //gfx.DrawLine(pen,
+                //    (float)_points[_current - 1].x,
+                //    this.Size.Width - (float)_points[_current - 1].y,
+                //    (float)_points[_current].x,
+                //    this.Size.Width - (float)_points[_current].y);
+
+
                 gfx.DrawLine(pen,
-                (float)_points[_current - 1].x,
-                (float)_points[_current - 1].y,
-                (float)_points[_current].x,
-                (float)_points[_current].y);
+                    (float)_points[_current - 1].x,
+                    this.Size.Height - (float)_points[_current - 1].y - 100,
+                    (float)_points[_current].x,
+                    this.Size.Height - (float)_points[_current].y - 100);
             }
 
             //if (Utils.GetDistance((float)_points[_current - 1].x,

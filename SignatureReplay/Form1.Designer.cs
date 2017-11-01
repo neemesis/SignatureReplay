@@ -35,12 +35,14 @@
             this.cbJson = new System.Windows.Forms.CheckBox();
             this.cbDots = new System.Windows.Forms.CheckBox();
             this.cbDev = new System.Windows.Forms.CheckBox();
+            this.btnClear = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudThickness)).BeginInit();
             this.SuspendLayout();
             // 
             // tbSignatureB64
             // 
             this.tbSignatureB64.Location = new System.Drawing.Point(13, 13);
+            this.tbSignatureB64.MaxLength = 0;
             this.tbSignatureB64.Multiline = true;
             this.tbSignatureB64.Name = "tbSignatureB64";
             this.tbSignatureB64.Size = new System.Drawing.Size(391, 207);
@@ -102,8 +104,6 @@
             // cbDev
             // 
             this.cbDev.AutoSize = true;
-            this.cbDev.Checked = true;
-            this.cbDev.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbDev.Location = new System.Drawing.Point(209, 243);
             this.cbDev.Name = "cbDev";
             this.cbDev.Size = new System.Drawing.Size(46, 17);
@@ -111,11 +111,22 @@
             this.cbDev.Text = "Dev";
             this.cbDev.UseVisualStyleBackColor = true;
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(262, 226);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(33, 34);
+            this.btnClear.TabIndex = 7;
+            this.btnClear.Text = "C";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(416, 273);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.cbDev);
             this.Controls.Add(this.cbDots);
             this.Controls.Add(this.cbJson);
@@ -140,6 +151,7 @@
         private System.Windows.Forms.CheckBox cbJson;
         private System.Windows.Forms.CheckBox cbDots;
         private System.Windows.Forms.CheckBox cbDev;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 
